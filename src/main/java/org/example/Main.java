@@ -74,10 +74,8 @@ public class Main {
 
         for (int statNum=0;statNum<NUMBER_OF_TESTS;statNum++) {
             stats[statNum] = new Statistics(statNum);
-
-
             StringBuilder sb = new StringBuilder();
-            Set<String> topics = new HashSet<>();
+            Set<String> phrases = new HashSet<>();
             System.out.format("Generating %s phrases%n", stats[statNum].numberOfPhrases);
             for (int i = 0; i < stats[statNum].numberOfPhrases; i++) {
                 int wordCount = random.nextInt(2, 5);
@@ -88,7 +86,7 @@ public class Main {
                 String token = sb.toString();
                 // call hash to set maxTopicCounter
                 hash(token);
-                topics.add(token);
+                phrases.add(token);
                 sb.setLength(0);
             }
             stats[statNum].phraseTokens = counter;
@@ -98,7 +96,7 @@ public class Main {
 
             Map<String, BloomFilter> patterns = new TreeMap<>(naivePatternSorter);
             System.out.format("Generating %s patterns%n", stats[statNum].numberOfPatterns);
-            String[] keys = topics.toArray(new String[0]);
+            String[] keys = phrases.toArray(new String[0]);
             for (int i = 0; i < stats[statNum].numberOfPatterns; i++) {
                 String token = keys[random.nextInt(0, keys.length)];
                 String[] parts = token.split("-");
@@ -114,9 +112,9 @@ public class Main {
             stats[statNum].patternTokens = counter;
 
             System.out.println("Starting tests");
-            for (String topic : topics) {
-                stats[statNum].cumulativeOrderTime += orderedSearchTime(topic, patterns.keySet());
-                stats[statNum].cumulativeBFTime += bfSearchTime(topic, patterns, stats[statNum].shape);
+            for (String phrase : phrases) {
+                stats[statNum].cumulativeOrderTime += orderedSearchTime(phrase, patterns.keySet());
+                stats[statNum].cumulativeBFTime += bfSearchTime(phrase, patterns, stats[statNum].shape);
             }
 
             stats[statNum].printSynopsis();
@@ -160,6 +158,11 @@ public class Main {
         System.out.print("'Pattern Tokens'");
         for (int i=0;i<NUMBER_OF_TESTS;i++) {
             System.out.format(",%s", stats[i].patternTokens);
+        }
+        System.out.println();
+        System.out.print("'n Phrases'");
+        for (int i=0;i<NUMBER_OF_TESTS;i++) {
+            System.out.format(",%s", stats[i].numberOfPhrases);
         }
         System.out.println();
     }
