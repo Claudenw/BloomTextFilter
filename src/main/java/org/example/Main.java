@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Apache-2.0
 package org.example;
 
 import org.apache.commons.codec.digest.MurmurHash3;

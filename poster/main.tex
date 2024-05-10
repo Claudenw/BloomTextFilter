@@ -1,3 +1,7 @@
+% 
+% Licensed under Creative Commons Attribution Share Alike 4.0 International
+% SPDX-License-Identifier: CC-BY-SA-4.0
+% 
 \documentclass[
 portrait,a0paper
 % landscape,
@@ -90,11 +94,16 @@ portrait,a0paper
     %\huge\bf\selectfont  \vspace{0.15cm} \\ 
     % Authors, main author first will be underlined, you might need to modify distances or number of lines
     % three lines
-    \small\underline{Claude N. Warren, Jr.}
+    \small\underline{Claude N. Warren, Jr.} \\
     %\small C.\ Author, Institute \\
     %\small D.\ Author, Institute
     % two lines
-    %\vspace{0.2cm}
+    \vspace{0.5cm}
+    \color{white}\small Text licensed under Creative Commons CC-BY-SA-4.0 \\
+    \color{white}\small Code licensed under Apache License 2.0 \\
+  
+
+
     %\small\underline{Main Author}, B.\ Author, CERN, Geneva, Switzerland \\
     %\small C.\ Author, Institute \\
     \end{center} 
@@ -110,6 +119,7 @@ portrait,a0paper
   % Modify links!!!
   % left
   \put(0.18,1.1){\color{white}\qrcode[hyperlink,height=.08\textwidth]{https://github.com/Claudenw/BloomTextFilter}}
+  
   % right
   %\put(21.02,-0.25){\large\bf\color{white}Poster ID}
   %\put(21,1.1){\color{white}\qrcode[hyperlink,height=.08\textwidth]{https://gitlab.cern.ch/mkoopman/templates}}
@@ -196,14 +206,21 @@ portrait,a0paper
  \includegraphics[scale=.35]{images/graph.png}
  The graph shows a run of the test code\cite{website:Poster} with 100 to 300 patterns. The experiment selected 50 words at random and generates a number of phrases from those words.  Two to four words are combined with hyphens '-' to create the number of phrases.  The phrases are selected at random, and one or more hyphen separated parts are replaced with asterisks '*' to create the patterns. The table below shows the number of phrases associated with the number of patterns.  Each phrase is then tested against the patterns finding the best fit as described in the Motivation section above.  The results show that the Bloom filter based search out performs the naive brute force method even for as few as 100 patterns.
 \begin{center}
- \begin{tabular}{ r r }
- Phrases & Patterns \\
-  500   & 100 \\
-  750   & 150 \\
-  1000  & 200 \\
-  1250  & 250 \\
-  1500  & 300 \\
-  \end{tabular}
+ \begin{tabular}{ || r | r ||}
+   \hline
+   Patterns & Phrases  \\
+   \hline
+    100 & 500 \\
+   \hline
+     150 & 750 \\
+   \hline
+    200 & 1000 \\
+   \hline
+    250 & 1250 \\
+   \hline
+    300 & 1500 \\ 
+  \hline
+ \end{tabular}
 \end{center}
   The Bloom filters in the experiment are based on the number of 2-character chunks that were developed for the longest phrase.  The maximum bloom filter size was 85 bytes.  This means that the solution requires 85 bytes per pattern to implement.
 }
